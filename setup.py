@@ -32,6 +32,7 @@ if '--gpu' in sys.argv:
 else:
   gpu_mode = False
 
+gpu_mode=True
 REQUIRED_PACKAGES = [
     'IPython',
     'absl-py',
@@ -66,7 +67,7 @@ REQUIRED_PACKAGES = [
 if gpu_mode:
   REQUIRED_PACKAGES.append('tensorflow-gpu >= 1.13.0')
 else:
-  REQUIRED_PACKAGES.append('tensorflow >= 1.13.0')
+  REQUIRED_PACKAGES.append('tensorflow-gpu >= 1.13.0')
 
 # pylint:disable=line-too-long
 CONSOLE_SCRIPTS = [

@@ -19,10 +19,11 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-
 from magenta.models.music_vae import configs
 from magenta.models.music_vae import data
 import tensorflow as tf
+
+# tf.enable_eager_execution()
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
@@ -119,18 +120,38 @@ def _get_input_tensors(dataset, config):
   """Get input tensors from dataset."""
   batch_size = config.hparams.batch_size
   iterator = dataset.make_one_shot_iterator()
-  (input_sequence, output_sequence, control_sequence,
-   sequence_length) = iterator.get_next()
+  if config.include_style_labels:
+    ((input_sequence, output_sequence, 
+    control_sequence, sequence_length), style) = iterator.get_next()
+    tf.logging.info("shapes", input_sequence, output_sequence, 
+    control_sequence, sequence_length, style)
+    style.set_shape(
+      [batch_size, config.style_categories])
+  else:
+    (input_sequence, output_sequence, control_sequence,
+     sequence_length) = iterator.get_next()
+
   input_sequence.set_shape(
       [batch_size, None, config.data_converter.input_depth])
   output_sequence.set_shape(
       [batch_size, None, config.data_converter.output_depth])
+
   if not config.data_converter.control_depth:
     control_sequence = None
   else:
     control_sequence.set_shape(
         [batch_size, None, config.data_converter.control_depth])
   sequence_length.set_shape([batch_size] + sequence_length.shape[1:].as_list())
+
+  if config.include_style_labels:
+    return {
+      'input_sequence': input_sequence,
+      'output_sequence': output_sequence,
+      'control_sequence': control_sequence,
+      'sequence_length': sequence_length,
+      'style': style,
+      'style_dim': config.style_categories
+    }
 
   return {
       'input_sequence': input_sequence,
@@ -161,6 +182,7 @@ def train(train_dir,
     with tf.device(tf.train.replica_device_setter(
         num_ps_tasks, merge_devices=True)):
 
+      dataset = dataset_fn()
       model = config.model
       model.build(config.hparams,
                   config.data_converter.output_depth,
@@ -197,7 +219,9 @@ def train(train_dir,
 
       logging_dict = {'global_step': model.global_step,
                       'loss': model.loss}
-
+      if config.include_style_labels:
+        logging_dict['style_loss'] = model.style_loss
+        
       hooks.append(tf.train.LoggingTensorHook(logging_dict, every_n_iter=100))
       if num_steps:
         hooks.append(tf.train.StopAtStepHook(last_step=num_steps))
@@ -302,7 +326,6 @@ def run(config_map,
         num_threads=FLAGS.num_data_threads,
         is_training=is_training,
         cache_dataset=FLAGS.cache_dataset)
-
   if is_training:
     train(
         train_dir,

@@ -24,7 +24,7 @@ from magenta.common import merge_hparams
 from magenta.models.music_vae import data
 from magenta.models.music_vae import data_hierarchical
 from magenta.models.music_vae import lstm_models
-from magenta.models.music_vae.base_model import MusicVAE
+from magenta.models.music_vae.base_model import MusicVAE, StyleMusicVAE
 import magenta.music as mm
 from tensorflow.contrib.training import HParams
 
@@ -32,7 +32,8 @@ from tensorflow.contrib.training import HParams
 class Config(collections.namedtuple(
     'Config',
     ['model', 'hparams', 'note_sequence_augmenter', 'data_converter',
-     'train_examples_path', 'eval_examples_path', 'tfds_name'])):
+     'train_examples_path', 'eval_examples_path', 'tfds_name', 
+     'include_style_labels', 'style_categories'])):
 
   def values(self):
     return self._asdict()
@@ -550,6 +551,33 @@ CONFIG_MAP['groovae_2bar_humanize'] = Config(
         pitch_classes=data.ROLAND_DRUM_PITCH_CLASSES,
         inference_pitch_classes=data.REDUCED_DRUM_PITCH_CLASSES),
     tfds_name='groove/2bar-midionly'
+)
+
+CONFIG_MAP['groovae_2bar_humanize_style'] = Config(
+    model=StyleMusicVAE(lstm_models.BidirectionalLstmEncoder(),
+                   lstm_models.GrooveLstmDecoder()),
+    hparams=merge_hparams(
+        lstm_models.get_default_hparams(),
+        HParams(
+            batch_size=512,
+            max_seq_len=16 * 2,  # 2 bars w/ 16 steps per bar
+            z_size=256,
+            enc_rnn_size=[512],
+            dec_rnn_size=[256, 256],
+            max_beta=0.2,
+            free_bits=48,
+            dropout_keep_prob=0.3,
+        )),
+    note_sequence_augmenter=None,
+    data_converter=data.AugmentedGrooveConverter(
+        split_bars=2, steps_per_quarter=4, quarters_per_bar=4,
+        max_tensors_per_notesequence=20, humanize=True,
+        pitch_classes=data.ROLAND_DRUM_PITCH_CLASSES,
+        inference_pitch_classes=data.REDUCED_DRUM_PITCH_CLASSES,
+        style_categories=18),
+    tfds_name='groove/2bar-midionly',
+    include_style_labels=True,
+    style_categories=18
 )
 
 CONFIG_MAP['groovae_2bar_tap_fixed_velocity'] = Config(

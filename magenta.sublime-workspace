@@ -1,0 +1,386 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getOffers"
+			],
+			[
+				"check",
+				"checkItems"
+			],
+			[
+				"f",
+				"fullPrice"
+			],
+			[
+				"Re",
+				"Receipt"
+			],
+			[
+				"fu",
+				"fullReducedPrice"
+			],
+			[
+				"o",
+				"offer"
+			],
+			[
+				"show",
+				"showReduction"
+			],
+			[
+				"to",
+				"totalsToString"
+			],
+			[
+				"R",
+				"Reductions"
+			],
+			[
+				"off",
+				"offerItems"
+			],
+			[
+				"re",
+				"reducedItems"
+			],
+			[
+				"fil",
+				"filterOffers"
+			],
+			[
+				"in",
+				"initItems"
+			],
+			[
+				"offer",
+				"offerToString"
+			],
+			[
+				"item",
+				"itemsToString"
+			],
+			[
+				"itme",
+				"itemsToString"
+			],
+			[
+				"redu",
+				"reducedPrice"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ayu",
+				"ayu: Activate theme"
+			],
+			[
+				"ven",
+				"View: Toggle Menu"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"raw",
+				"Raw Line Edit: Toggle"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Disable Package"
+			],
+			[
+				"sublimelinter",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"ve",
+				"View: Toggle Menu"
+			],
+			[
+				"sublimel",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"view",
+				"View: Toggle Menu"
+			],
+			[
+				"men",
+				"View: Toggle Menu"
+			],
+			[
+				"v",
+				"View: Toggle Menu"
+			],
+			[
+				"theme",
+				"ayu: Activate theme"
+			],
+			[
+				"vmen",
+				"View: Toggle Menu"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Channel"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 435.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/salman/compsci/summer/magenta"
+	],
+	"file_history":
+	[
+		"/home/salman/compsci/summer/Transformer.py",
+		"/home/salman/compsci/level_4/ai/test/cartpole/cartpole.py",
+		"/home/salman/compsci/level_4/ai/test/cartpole/CartpoleSolver.py",
+		"/home/salman/compsci/level_4/ai/test/venv/lib/python3.6/site-packages/tensorflow/contrib/tensor_forest/hybrid/python/hybrid_model.py",
+		"/home/salman/compsci/level_4/ai/test/CartpoleSolver.py",
+		"/home/salman/compsci/level_4/ai/test/cart_utils.py",
+		"/home/salman/compsci/level_4/ai/test/cartpole.py",
+		"/home/salman/Documents/Thesis.bib",
+		"/home/salman/compsci/thesis/magenta/magenta/models/shared/events_rnn_train.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/performance_rnn/performance_rnn_train.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/shared/events_rnn_graph.py",
+		"/home/salman/compsci/thesis/magenta/magenta/scripts/create_turing.py",
+		"/home/salman/compsci/thesis/magenta/magenta/scripts/convert_dir_to_note_sequences.py",
+		"/home/salman/compsci/thesis/magenta/magenta/music/sequence_generator.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/cond_performancernn/condrnn_pipeline.py",
+		"/home/salman/compsci/thesis/magenta/magenta/music/melodies_lib.py",
+		"/home/salman/compsci/thesis/magenta/data/run.info",
+		"/home/salman/Documents/thesis.bib",
+		"/home/salman/compsci/thesis/magenta/magenta/models/performance_rnn/performance_sequence_generator.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/cond_performancernn/condrnn_create_dataset.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/cond_performancernn/condrnn_generate.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/performance_rnn/performance_rnn_generate.py",
+		"/home/salman/compsci/level_4/cp/exercise2-2019/java/BACP.java",
+		"/home/salman/compsci/thesis/magenta/magenta/models/cond_performancernn/models.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/cond_performancernn/train/condrnn_generate.py",
+		"/home/salman/Downloads/week2/01-guardRota/guardRotaV1.mzn",
+		"/home/salman/compsci/level_4/cp/CPM-ex01/exercise1-2019/teamBuilding.mzn",
+		"/home/salman/Downloads/week2/00-productionPlanning/prod-plan-opt.mzn",
+		"/home/salman/Downloads/week2/01-guardRota/guardRotaV2.mzn",
+		"/home/salman/compsci/thesis/magenta/magenta/models/cond_performancernn/__init__.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/cond_performancernn/train.py",
+		"/home/salman/compsci/thesis/magenta/magenta/models/shared/events_rnn_model.py",
+		"/tmp/mozilla_salman0/pom.xml",
+		"/home/salman/compsci/thesis/magenta/magenta/models/performance_rnn/__init__.py",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/complete-001/input",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/complete-001/output",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/objectswin-001/run",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/objectswin-001/board.csv",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/src/Tafl/Options.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/src/Tafl/Core.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/complete-001/expected",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/special-001/output",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/special-001/expected",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/loadsave-001/output",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/capture-001/expected",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/moves-001/output",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/loadsave-001/game.csv",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/test.csv",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/loadsave-001/expected",
+		"/home/salman/compsci/level_4/functional_programming/ae2_final/ae2/tests-public-whole-program/capture-001/output",
+		"/home/salman/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/salman/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
+		"/home/salman/.config/sublime-text-3/Local/Auto Save Session.sublime_session",
+		"/home/salman/compsci/level_4/functional_programming/ae2/for-students/tests-public-whole-program/moves-001/output",
+		"/home/salman/compsci/level_4/functional_programming/ae2/for-students/src/Tafl/Options.hs",
+		"/home/salman/.mozilla/firefox/ogq542bw.default/chrome/userChrome.css",
+		"/home/salman/compsci/level_4/functional_programming/ae2/for-students/README.md",
+		"/home/salman/compsci/level_4/functional_programming/ae1/status.txt",
+		"/home/salman/compsci/level_4/functional_programming/ae1/Receipts.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae1/Items.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae1/CharlieReceipt.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae1/BobReceipt.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae1/AliceReceipt.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae1/main.hs",
+		"/home/salman/compsci/level_4/functional_programming/ae1/Item.hs",
+		"/home/salman/Documents/EA_bank_application.txt"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 169.333333333,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 71.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 126.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "magenta.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 345.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 580.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 222.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
