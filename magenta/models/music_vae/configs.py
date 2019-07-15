@@ -562,6 +562,7 @@ CONFIG_MAP['groovae_2bar_humanize_style'] = Config(
             batch_size=512,
             max_seq_len=16 * 2,  # 2 bars w/ 16 steps per bar
             z_size=256,
+            c_size=2,
             enc_rnn_size=[512],
             dec_rnn_size=[256, 256],
             max_beta=0.2,

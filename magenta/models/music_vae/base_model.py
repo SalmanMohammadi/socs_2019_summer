@@ -476,14 +476,18 @@ class StyleMusicVAE(object):
       z = q_z.sample()
 
       # Prior distribution.
+      if hparams.c_size:
+        # noise_z_size = hparams.z_size - hparams.c_size
+        c = z[:, -hparams.c_size:]
+
       p_z = ds.MultivariateNormalDiag(
-          loc=[0.] * hparams.z_size, scale_diag=[1.] * hparams.z_size)
+        loc=[0.] * hparams.z_size, scale_diag=[1.] * hparams.z_size)
 
       # KL Divergence (nats)
       kl_div = ds.kl_divergence(q_z, p_z)
       
       # a classifier for z into style
-      style_logits = tf.layers.dense(z, style_dim)
+      style_logits = tf.layers.dense(c, style_dim, name='style_classifier')
       style_prediction = tf.argmax(style_logits, axis=1)
 
       # Concatenate the Z vectors to the inputs at each time step.
