@@ -440,6 +440,12 @@ class StyleMusicVAE(object):
 
     return ds.MultivariateNormalDiag(loc=mu, scale_diag=sigma)
 
+  def get_style(self, c, style_dim=18):
+    style_logits = tf.layers.dense(c, style_dim, name='style_classifier')
+    style_prediction = tf.argmax(style_logits, axis=1)
+
+    return style_logits, style_prediction
+
   def _compute_model_loss(
       self, input_sequence, output_sequence, sequence_length, 
       control_sequence, style, style_dim):
@@ -477,7 +483,6 @@ class StyleMusicVAE(object):
 
       # Prior distribution.
       if hparams.c_size:
-        # noise_z_size = hparams.z_size - hparams.c_size
         c = z[:, -hparams.c_size:]
 
       p_z = ds.MultivariateNormalDiag(
@@ -487,8 +492,7 @@ class StyleMusicVAE(object):
       kl_div = ds.kl_divergence(q_z, p_z)
       
       # a classifier for z into style
-      style_logits = tf.layers.dense(c, style_dim, name='style_classifier')
-      style_prediction = tf.argmax(style_logits, axis=1)
+      style_logits, _ = self.get_style(c)
 
       # Concatenate the Z vectors to the inputs at each time step.
     else:  # unconditional, decoder-only generation
@@ -505,13 +509,22 @@ class StyleMusicVAE(object):
             * hparams.max_beta)
 
     # simple style cross-entropy loss
+    # classifier_weight = tf.Variable(hparams.style_weight, trainable=False,
+    #                                 name='classifier_weight')
+    # self.classifier_weight = classifier_weight - tf.train.polynomial_decay(
+    #                             hparams.style_weight, self.global_step,
+    #                             hparams.decay_steps, 0.0,
+    #                             power=0.1)
+    self.classifier_weight = tf.cond(tf.train.get_or_create_global_step() < hparams.decay_steps,
+                                     lambda *x: 0.0, lambda *x : hparams.style_weight)
     style_cross_entropy = tf.nn.softmax_cross_entropy_with_logits(
                         labels=style, logits=style_logits)
-    self.style_loss = tf.reduce_mean(style_cross_entropy)
-
-    self.loss = tf.reduce_mean(r_loss) + beta * tf.reduce_mean(kl_cost)
-    self.loss *= 0.95
-    self.loss += (self.style_loss *0.05)
+    self.base_style_loss = tf.reduce_mean(style_cross_entropy)
+    self.style_loss = self.base_style_loss * self.classifier_weight
+    
+    self.base_rnn_loss = tf.reduce_mean(r_loss) + beta * tf.reduce_mean(kl_cost)
+    self.rnn_loss = (1 - self.classifier_weight) * self.base_rnn_loss
+    self.loss = tf.add(self.rnn_loss, self.style_loss)
 
     scalars_to_summarize = {
         'loss': self.loss,
@@ -519,7 +532,10 @@ class StyleMusicVAE(object):
         'losses/kl_loss': kl_cost,
         'losses/kl_bits': kl_div / tf.math.log(2.0),
         'losses/kl_beta': beta,
-        'losses/style_loss': self.style_loss
+        'losses/base_style_loss': self.base_style_loss,
+        'losses/base_rnn_loss': self.base_rnn_loss,
+        'losses/style_loss': self.style_loss,
+        'losses/rnn_loss': self.rnn_loss
     }
     return metric_map, scalars_to_summarize
 
@@ -602,8 +618,8 @@ class StyleMusicVAE(object):
       z = normal_dist.sample()
 
     return self.decoder.sample(n, max_length, z, c_input, **kwargs)
-  
-  
+
+
 
 def get_default_hparams():
   return tf.contrib.training.HParams(

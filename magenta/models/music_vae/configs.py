@@ -559,15 +559,17 @@ CONFIG_MAP['groovae_2bar_humanize_style'] = Config(
     hparams=merge_hparams(
         lstm_models.get_default_hparams(),
         HParams(
-            batch_size=512,
+            batch_size=256,
             max_seq_len=16 * 2,  # 2 bars w/ 16 steps per bar
             z_size=256,
             c_size=2,
             enc_rnn_size=[512],
-            dec_rnn_size=[256, 256],
+            dec_rnn_size=[512, 256],
             max_beta=0.2,
             free_bits=48,
             dropout_keep_prob=0.3,
+            decay_steps=20000,
+            style_weight=0.05
         )),
     note_sequence_augmenter=None,
     data_converter=data.AugmentedGrooveConverter(

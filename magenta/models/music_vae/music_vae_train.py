@@ -123,8 +123,6 @@ def _get_input_tensors(dataset, config):
   if config.include_style_labels:
     ((input_sequence, output_sequence, 
     control_sequence, sequence_length), style) = iterator.get_next()
-    tf.logging.info("shapes", input_sequence, output_sequence, 
-    control_sequence, sequence_length, style)
     style.set_shape(
       [batch_size, config.style_categories])
   else:
@@ -220,8 +218,12 @@ def train(train_dir,
       logging_dict = {'global_step': model.global_step,
                       'loss': model.loss}
       if config.include_style_labels:
+        logging_dict['base_style_loss'] = model.base_style_loss
+        logging_dict['base_rnn_loss'] = model.base_rnn_loss
         logging_dict['style_loss'] = model.style_loss
-        
+        logging_dict['rnn_loss'] = model.rnn_loss
+        logging_dict['style_weight'] = model.classifier_weight
+
       hooks.append(tf.train.LoggingTensorHook(logging_dict, every_n_iter=100))
       if num_steps:
         hooks.append(tf.train.StopAtStepHook(last_step=num_steps))
